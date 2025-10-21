@@ -1,23 +1,41 @@
-## 🌀 Tailscale 一键安装与自维护脚本
+# Tailscale 一键安装与自维护脚本
 
-📘 项目简介
+**作者**：胡博涵  
+**版本**：v1.2（2025 智能时区增强版）  
+**仓库**：[husibo16/Tailscale](https://github.com/husibo16/Tailscale)
 
-本脚本用于 在 Debian / Ubuntu 系统上自动安装与自维护 Tailscale
-，
-并通过 systemd 实现 每日定时自检与自动重启 tailscaled 服务，确保节点长期稳定在线。
+---
 
-主要特性：
+## 简介
 
-✅ 自动识别系统版本（Debian / Ubuntu 全系列）
+本脚本用于在 Debian / Ubuntu 系统上，自动安装、配置 Tailscale 并设置每日自动维护。  
+通过 `systemd timer` 实现定时重启与自检，确保节点长期稳定在线。  
 
-🌐 自动添加官方软件源并安装最新版 Tailscale
+---
 
-🧠 智能检测系统时区（Asia/Shanghai 等）
+## 主要特性
 
-🔁 每日定时重启 tailscaled，防止连接异常
+- ✅ 自动识别系统版本（Debian / Ubuntu 全系列）  
+- 🌐 自动添加官方软件源并安装最新版 Tailscale  
+- 🧭 智能检测系统时区（如 Asia/Shanghai）  
+- ⏰ 每日定时重启 tailscaled 服务，防止连接异常  
+- 🧾 自动生成日志并设置轮换策略（`/var/log/tailscale_*.log`）  
+- 🔄 支持断网/宕机后自动补跑定时任务  
+- 🚀 首次执行后自动授权、自检、日志初始化  
 
-🧾 自动生成与轮换日志（/var/log/tailscale_*.log）
+---
 
-⚙️ 支持断网恢复、宕机后自动补跑定时任务
+## 系统要求
 
-🚀 首次执行后自动完成授权、自检与日志初始化
+| 项目     | 要求                       |
+|----------|----------------------------|
+| 操作系统 | Debian 11+ 或 Ubuntu 20.04+|
+| 权限     | 需要 root 或 sudo 权限      |
+| 网络     | 能访问 https://pkgs.tailscale.com |
+
+---
+
+## 快速安装
+
+```bash
+curl -fsSL <脚本URL> | bash
