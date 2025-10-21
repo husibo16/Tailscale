@@ -66,6 +66,7 @@ systemctl restart tailscaled
 ```
 ## 🧾 卸载与清理
 
+```bash
 systemctl disable --now tailscale-maintenance.timer tailscaled
 apt remove --purge tailscale -y
 rm -f /etc/apt/sources.list.d/tailscale.list
@@ -74,4 +75,4 @@ rm -f /usr/local/bin/tailscale-maintenance.sh
 rm -f /etc/systemd/system/tailscale-maintenance.{service,timer}
 rm -f /etc/logrotate.d/tailscale-maintenance
 rm -f /var/log/tailscale_*.log
-
+```
