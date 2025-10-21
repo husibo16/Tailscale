@@ -45,3 +45,33 @@
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/husibo16/Tailscale/main/install-tailscale.sh | bash
+```
+
+## 🔧 常用命令
+```bash
+# 查看 tailscaled 状态
+systemctl status tailscaled --no-pager
+
+# 手动运行维护任务
+bash /usr/local/bin/tailscale-maintenance.sh
+
+# 查看维护日志
+cat /var/log/tailscale_maintenance.log
+
+# 检查定时任务
+systemctl list-timers | grep tailscale
+
+# 手动重启 tailscaled
+systemctl restart tailscaled
+```
+## 🧾 卸载与清理
+
+systemctl disable --now tailscale-maintenance.timer tailscaled
+apt remove --purge tailscale -y
+rm -f /etc/apt/sources.list.d/tailscale.list
+rm -f /usr/share/keyrings/tailscale-archive-keyring.gpg
+rm -f /usr/local/bin/tailscale-maintenance.sh
+rm -f /etc/systemd/system/tailscale-maintenance.{service,timer}
+rm -f /etc/logrotate.d/tailscale-maintenance
+rm -f /var/log/tailscale_*.log
+
